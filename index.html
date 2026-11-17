@@ -1,0 +1,306 @@
+
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Данъчно облекчение за деца | Хелти Барс</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#f3f5f8;color:#243247;font-family:Arial,sans-serif}
+header{background:#173b55;color:white;padding:25px 18px;text-align:center}
+header h1{font-size:23px;margin:0 0 8px}
+header p{margin:0;color:#dce8ef;font-size:14px}
+main{max-width:760px;margin:25px auto;padding:0 14px 40px}
+.card{background:white;padding:23px;border-radius:12px;margin-bottom:17px;box-shadow:0 2px 12px #102b4010}
+h2{font-size:18px;margin:0 0 17px;color:#173b55}
+h3{font-size:16px;margin:18px 0 12px}
+label{display:block;font-size:14px;font-weight:600;margin:12px 0 6px}
+input,select{width:100%;padding:12px;border:1px solid #cbd4df;border-radius:7px;font-size:15px;background:white}
+input:focus,select:focus{outline:2px solid #8bb8d4;border-color:#34789e}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.check{display:flex;align-items:flex-start;gap:10px;font-size:14px;margin:15px 0;line-height:1.45}
+.check input{width:18px;height:18px;flex-shrink:0;margin:0}
+.child{border:1px solid #dce3eb;padding:15px;border-radius:9px;margin:12px 0}
+button{border:0;border-radius:8px;padding:13px 18px;font-size:15px;font-weight:bold;cursor:pointer}
+.primary{background:#176b91;color:white;width:100%;margin-top:12px}
+.secondary{background:#e8f0f5;color:#17455e}
+.remove{background:#fff0ef;color:#a3332c;margin-top:12px}
+.note{font-size:13px;line-height:1.5;color:#637386}
+.company{background:#edf5f8;padding:14px;border-radius:8px;line-height:1.7}
+#message{color:#b42318;font-size:14px;margin-top:12px}
+#result{display:none}
+#printDoc{background:white;color:#111;font-family:Arial,sans-serif;font-size:12px;line-height:1.5}
+#printDoc h1{text-align:center;font-size:18px}
+#printDoc h2{font-size:14px;color:#111;border-bottom:1px solid #888;padding-bottom:5px}
+.print-row{padding:5px 0;border-bottom:1px dotted #aaa}
+.signature{margin-top:50px;display:flex;justify-content:space-between;gap:30px}
+.signature div{width:45%;border-top:1px solid #222;text-align:center;padding-top:7px}
+@media(max-width:550px){.grid{grid-template-columns:1fr}.card{padding:17px}}
+@media print{
+ body{background:white}
+ header,.no-print{display:none!important}
+ main{margin:0;padding:0;max-width:none}
+ #result{display:block!important}
+ #printDoc{font-size:11pt}
+}
+</style>
+</head>
+<body>
+<header>
+<h1>Данъчно облекчение за деца</h1>
+<p>Декларация по чл. 22в от ЗДДФЛ · Хелти Барс ООД</p>
+</header>
+
+<main>
+<div id="formArea" class="no-print">
+<div class="card">
+<h2>Данни за работодателя</h2>
+<div class="company">
+<strong>Хелти Барс ООД</strong><br>
+ЕИК: 203356338
+</div>
+<p class="note">Данните на работодателя са предварително попълнени.</p>
+</div>
+
+<div class="card">
+<h2>1. Данни за служителя (декларатора)</h2>
+<div class="grid">
+<div>
+<label for="first">Собствено име *</label>
+<input id="first" autocomplete="given-name" required>
+</div>
+<div>
+<label for="middle">Презиме *</label>
+<input id="middle" required>
+</div>
+<div>
+<label for="last">Фамилия *</label>
+<input id="last" autocomplete="family-name" required>
+</div>
+<div>
+<label for="egn">ЕГН *</label>
+<input id="egn" inputmode="numeric" maxlength="10" placeholder="10 цифри" required>
+</div>
+</div>
+
+<label for="residence">Местно лице за данъчната година</label>
+<select id="residence">
+<option value="България">България</option>
+<option value="Друга държава от ЕС/ЕИП">Друга държава от ЕС/ЕИП</option>
+</select>
+
+<label for="year">Данъчна година</label>
+<select id="year">
+<option value="2026">2026</option>
+<option value="2025">2025</option>
+</select>
+</div>
+
+<div class="card">
+<h2>2. Обстоятелства</h2>
+
+<label for="relation">В качеството си на:</label>
+<select id="relation">
+<option>Родител, който не е лишен от родителски права</option>
+<option>Приемен родител</option>
+<option>Настойник или попечител</option>
+<option>Член на семейство на роднини или близки</option>
+<option>Родител, на когото не е предоставено упражняването на родителските права</option>
+</select>
+
+<label class="check">
+<input type="checkbox" id="otherParent" required>
+<span>Запознат/а съм, че другият родител или съответното лице няма да ползва облекчението за същата данъчна година.</span>
+</label>
+
+<label class="check">
+<input type="checkbox" id="noDebt">
+<span>Декларирам, че към датата на подаване нямам подлежащи на принудително изпълнение публични задължения.</span>
+</label>
+
+<label class="check">
+<input type="checkbox" id="annualReturn">
+<span>Ще подавам годишна данъчна декларация по чл. 50 от ЗДДФЛ.</span>
+</label>
+
+<p class="note">Отбележете приложимото обстоятелство относно публичните задължения и годишната данъчна декларация съгласно официалния образец.</p>
+</div>
+
+<div class="card">
+<h2>3. Данни за децата</h2>
+<p class="note">Добавете децата, за които ще ползвате данъчното облекчение.</p>
+<div id="children"></div>
+<button type="button" class="secondary" id="addChild">+ Добави дете</button>
+</div>
+
+<div class="card">
+<h2>4. Потвърждение</h2>
+<label class="check">
+<input type="checkbox" id="confirm" required>
+<span>Потвърждавам, че въведените данни са верни и ще проверя генерирания документ преди подписване.</span>
+</label>
+<p class="note">Това е помощен формуляр. Генерираният документ не замества официалния образец 2005 на НАП. Преди представяне пред работодателя данните трябва да бъдат пренесени и проверени спрямо актуалния официален образец.</p>
+<button class="primary" type="button" id="generate">Генерирай документ за печат</button>
+<div id="message" role="alert"></div>
+</div>
+</div>
+
+<div id="result">
+<div class="card" id="printDoc"></div>
+<div class="no-print">
+<button class="primary" onclick="window.print()">Изтегли / Запази като PDF</button>
+<button class="secondary" onclick="location.reload()" style="width:100%;margin-top:10px">Ново попълване</button>
+<p class="note">В прозореца за печат избери „Save as PDF“ / „Запазване като PDF“.</p>
+</div>
+</div>
+</main>
+
+<script>
+const children=document.getElementById('children');
+let childCount=0;
+
+function addChild(){
+ if(childCount>=3){
+  alert('В тази версия могат да се добавят до 3 деца.');
+  return;
+ }
+ childCount++;
+ const n=childCount;
+ const div=document.createElement('div');
+ div.className='child';
+ div.dataset.child=n;
+ div.innerHTML=`
+ <h3>Дете ${n}</h3>
+ <div class="grid">
+ <div><label>Собствено име *</label><input class="cf" required></div>
+ <div><label>Презиме *</label><input class="cm" required></div>
+ <div><label>Фамилия *</label><input class="cl" required></div>
+ <div><label>ЕГН *</label><input class="ce" maxlength="10" inputmode="numeric" required></div>
+ </div>
+ <label>Дата на раждане *</label>
+ <input class="cd" type="date" required>
+ <label>Местно лице към 31.12</label>
+ <select class="cr">
+ <option>България</option>
+ <option>Друга държава от ЕС/ЕИП</option>
+ </select>
+ <label class="check">
+ <input type="checkbox" class="cs">
+ <span>Детето не е настанено на пълна държавна издръжка в посочените в закона заведения.</span>
+ </label>
+ <button type="button" class="remove">Премахни детето</button>`;
+ div.querySelector('.remove').onclick=()=>{
+  div.remove();
+  childCount--;
+  [...children.children].forEach((el,i)=>{
+   el.querySelector('h3').textContent='Дете '+(i+1);
+  });
+ };
+ children.appendChild(div);
+}
+document.getElementById('addChild').onclick=addChild;
+addChild();
+
+function val(id){
+ return document.getElementById(id).value.trim();
+}
+function checked(id){
+ return document.getElementById(id).checked;
+}
+function escapeHTML(s){
+ return String(s).replace(/[&<>"']/g,c=>({
+ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
+ })[c]);
+}
+function validEGN(e){
+ if(!/^\d{10}$/.test(e)) return false;
+ const d=Array.from(e).map(Number);
+ const year=d[0]*10+d[1];
+ const month=d[2]*10+d[3];
+ const day=d[4]*10+d[5];
+ let fullYear;
+ let fullMonth=month;
+ if(month>=1&&month<=12) fullYear=1900+year;
+ else if(month>=21&&month<=32){fullYear=1800+year;fullMonth=month-20}
+ else if(month>=41&&month<=52){fullYear=2000+year;fullMonth=month-40}
+ else return false;
+ const date=new Date(fullYear,fullMonth-1,day);
+ if(date.getFullYear()!==fullYear||date.getMonth()!==fullMonth-1||date.getDate()!==day)return false;
+ const w=[2,4,8,5,10,9,7,3,6];
+ let sum=0;
+ for(let i=0;i<9;i++)sum+=d[i]*w[i];
+ return d[9]===(sum%11===10?0:sum%11);
+}
+document.getElementById('generate').onclick=()=>{
+ const msg=document.getElementById('message');
+ msg.textContent='';
+ const required=['first','middle','last','egn'];
+ for(const id of required){
+  if(!val(id)){msg.textContent='Моля, попълнете всички задължителни полета.';return}
+ }
+ if(!validEGN(val('egn'))){
+  msg.textContent='Проверете ЕГН на декларатора. Форматът или контролната цифра не са валидни.';
+  return;
+ }
+ if(!checked('otherParent')||!checked('confirm')){
+  msg.textContent='Моля, потвърдете задължителните обстоятелства.';
+  return;
+ }
+ const kids=[...children.querySelectorAll('.child')];
+ if(kids.length===0){msg.textContent='Добавете поне едно дете.';return}
+ for(const k of kids){
+  const fields=['.cf','.cm','.cl','.ce','.cd'];
+  if(fields.some(s=>!k.querySelector(s).value.trim())){
+   msg.textContent='Попълнете всички задължителни данни за всяко дете.';
+   return;
+  }
+  if(!validEGN(k.querySelector('.ce').value.trim())){
+   msg.textContent='Проверете ЕГН на дете. Форматът или контролната цифра не са валидни.';
+   return;
+  }
+  if(!k.querySelector('.cs').checked){
+   msg.textContent='Потвърдете приложимото обстоятелство за настаняването на детето.';
+   return;
+  }
+ }
+ const row=(name,value)=>`<div class="print-row"><strong>${name}:</strong> ${escapeHTML(value)}</div>`;
+ let html=`
+ <h1>ПОМОЩЕН ЛИСТ – ДАННИ ЗА ДЕКЛАРАЦИЯ</h1>
+ <p style="text-align:center">По чл. 22в от ЗДДФЛ · Данъчна година ${escapeHTML(val('year'))}</p>
+ <h2>Работодател</h2>
+ ${row('Наименование','Хелти Барс ООД')}
+ ${row('ЕИК','203356338')}
+ <h2>Данни за декларатора</h2>
+ ${row('Имена',val('first')+' '+val('middle')+' '+val('last'))}
+ ${row('ЕГН',val('egn'))}
+ ${row('Местно лице',val('residence'))}
+ ${row('Качество',val('relation'))}
+ ${row('Другият родител няма да ползва облекчението','Да')}
+ ${row('Публични задължения – потвърждение',checked('noDebt')?'Потвърдено':'Не е отбелязано')}
+ ${row('Годишна декларация по чл. 50',checked('annualReturn')?'Ще подава':'Не е отбелязано')}
+ <h2>Данни за децата</h2>`;
+ kids.forEach((k,i)=>{
+  html+=`<h3>Дете ${i+1}</h3>`;
+  html+=row('Имена',k.querySelector('.cf').value+' '+k.querySelector('.cm').value+' '+k.querySelector('.cl').value);
+  html+=row('ЕГН',k.querySelector('.ce').value);
+  html+=row('Дата на раждане',k.querySelector('.cd').value);
+  html+=row('Местно лице',k.querySelector('.cr').value);
+  html+=row('Обстоятелство за настаняване','Потвърдено');
+ });
+ html+=`<p style="margin-top:20px"><strong>Дата:</strong> ____________________</p>
+ <div class="signature">
+ <div>Подпис на декларатора</div>
+ <div>Подпис на упълномощено лице (ако е приложимо)</div>
+ </div>
+ <p style="margin-top:30px;font-size:10px;color:#555">
+ Този помощен лист не е официален образец 2005 на НАП и сам по себе си не представлява декларация за ползване на данъчно облекчение. Данните трябва да бъдат проверени и пренесени в актуалния официален образец.
+ </p>`;
+ document.getElementById('printDoc').innerHTML=html;
+ document.getElementById('formArea').style.display='none';
+ document.getElementById('result').style.display='block';
+ window.scrollTo(0,0);
+};
+</script>
+</body>
+</html>
